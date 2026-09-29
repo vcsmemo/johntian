@@ -241,11 +241,7 @@
       <h2><span data-i18n="s4t">Reading</span> <span class="sec-zh" data-i18n="s4zh">阅读</span></h2>
     </div>
     <p class="build-note" data-i18n="read_note"></p>
-    <ul class="memo-list">
-      <li><span class="m-label" data-i18n="r1_l">Book · sample</span><span data-i18n="r1"></span></li>
-      <li><span class="m-label" data-i18n="r2_l">Book · sample</span><span data-i18n="r2"></span></li>
-      <li><span class="m-label" data-i18n="r3_l">Essay · sample</span><span data-i18n="r3"></span></li>
-    </ul>
+    <ul class="memo-list" id="reading-list"></ul>
   </section>
 
   <section id="background">
@@ -320,9 +316,11 @@ const I18N = {
     wip: "IN PROGRESS",
     s4t: "Reading", s4zh: "阅读",
     read_note: "A running shelf of what I'm reading — books and essays that shape how I think.",
-    r1_l: "Book · sample", r1: "<em>The Power Law</em> — Sebastian Mallaby",
-    r2_l: "Book · sample", r2: "<em>Chip War</em> — Chris Miller",
-    r3_l: "Essay · sample", r3: "A recent Stratechery piece by Ben Thompson",
+    reading: [
+      { label: "Book · sample", title: "<em>The Power Law</em> — Sebastian Mallaby" },
+      { label: "Book · sample", title: "<em>Chip War</em> — Chris Miller" },
+      { label: "Essay · sample", title: "A recent Stratechery piece by Ben Thompson" }
+    ],
     s5t: "Background", s5zh: "背景",
     t1: "Founder, The Signal", t2: "Founder, 投资实习所 / Memo",
     t3: "Managing Director, 盈动资本", t4: "Partner, UpHonest Capital",
@@ -358,9 +356,11 @@ const I18N = {
     wip: "进行中",
     s4t: "阅读", s4zh: "READING",
     read_note: "最近在读、常翻的书和文章，都放在这里。",
-    r1_l: "书 · 示例", r1: "示例 — 《The Power Law》，Sebastian Mallaby",
-    r2_l: "书 · 示例", r2: "示例 — 《Chip War》，Chris Miller",
-    r3_l: "文章 · 示例", r3: "示例 — Ben Thompson 的一篇 Stratechery",
+    reading: [
+      { label: "书 · 示例", title: "示例 — 《The Power Law》，Sebastian Mallaby" },
+      { label: "书 · 示例", title: "示例 — 《Chip War》，Chris Miller" },
+      { label: "文章 · 示例", title: "示例 — Ben Thompson 的一篇 Stratechery" }
+    ],
     s5t: "背景", s5zh: "BACKGROUND",
     t1: "创始人，The Signal", t2: "创始人，投资实习所 / Memo",
     t3: "董事总经理，盈动资本", t4: "合伙人，UpHonest Capital",
@@ -387,6 +387,24 @@ function applyLang(l) {
   });
   toggle.textContent = l === "zh" ? "EN" : "中文";
   try { localStorage.setItem("jt-lang", l); } catch (e) {}
+  renderReading();
+}
+
+function renderReading() {
+  const ul = document.getElementById("reading-list");
+  if (!ul) return;
+  ul.innerHTML = "";
+  (I18N[lang].reading || []).forEach(item => {
+    const li = document.createElement("li");
+    const label = document.createElement("span");
+    label.className = "m-label";
+    label.textContent = item.label;
+    const title = document.createElement("span");
+    title.innerHTML = item.title;
+    li.appendChild(label);
+    li.appendChild(title);
+    ul.appendChild(li);
+  });
 }
 
 toggle.addEventListener("click", () => applyLang(lang === "zh" ? "en" : "zh"));
