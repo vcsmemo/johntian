@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Tian — Investing and building globally</title>
+<meta name="description" content="John Tian: Founder of The Signal, 投资实习所. Investing globally in early-stage AI. Previously 36Kr, Kr Space, UpHonest Capital.">
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #141414;
+    --muted: #6f6f6f;
+    --line: #e9e9e9;
+    --accent: #e8442e;
+    --card: #f7f7f7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #101010;
+      --ink: #f0f0f0;
+      --muted: #9a9a9a;
+      --line: #262626;
+      --accent: #ff5a3c;
+      --card: #181818;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #fff; }
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+  /* top bar */
+  header.top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; background: var(--paper); z-index: 10;
+  }
+  .brand { font-weight: 700; letter-spacing: -0.01em; text-decoration: none; color: var(--ink); }
+  .brand span { color: var(--accent); }
+  nav.topnav { display: flex; gap: 18px; align-items: center; }
+  nav.topnav a.navlink { color: var(--muted); text-decoration: none; font-size: 14px; }
+  nav.topnav a.navlink:hover { color: var(--ink); }
+  #lang-toggle {
+    font: inherit; font-size: 14px; cursor: pointer;
+    background: none; border: 1px solid var(--line); border-radius: 999px;
+    color: var(--ink); padding: 5px 14px;
+  }
+  #lang-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* hero */
+  .hero { padding: 84px 0 64px; }
+  .kicker {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 18px;
+  }
+  .kicker b { color: var(--accent); font-weight: 400; }
+  h1 {
+    font-size: clamp(3rem, 11vw, 5.2rem);
+    line-height: 1.02; letter-spacing: -0.035em; font-weight: 750;
+    margin-bottom: 20px;
+  }
+  .tagline { font-size: clamp(1.25rem, 3.4vw, 1.6rem); font-weight: 600; letter-spacing: -0.01em; margin-bottom: 22px; }
+  .tagline .dot { color: var(--accent); }
+  .intro { color: var(--muted); max-width: 34em; }
+  .intro strong { color: var(--ink); font-weight: 600; }
+
+  /* sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .sec-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; color: var(--accent);
+  }
+  h2 { font-size: 1.55rem; letter-spacing: -0.02em; font-weight: 700; }
+  .sec-zh { color: var(--muted); font-size: 0.95rem; font-weight: 400; }
+
+  /* memo */
+  .memo-lede { font-size: 1.12rem; margin-bottom: 22px; max-width: 32em; }
+  .memo-list { list-style: none; }
+  .memo-list li {
+    padding: 14px 0 14px 18px; border-left: 2px solid var(--line); margin-bottom: 6px;
+  }
+  .memo-list li:hover { border-left-color: var(--accent); }
+  .memo-list .m-label {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted); display: block; margin-bottom: 2px;
+  }
+
+  /* writing cards */
+  .pub { display: block; text-decoration: none; color: inherit; background: var(--card);
+    border-radius: 10px; padding: 22px 24px; margin-bottom: 14px; }
+  .pub:hover { outline: 1px solid var(--accent); }
+  .pub .p-name { font-weight: 700; font-size: 1.1rem; }
+  .pub .p-name .arrow { color: var(--accent); font-weight: 400; }
+  .pub .p-url { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; color: var(--muted); margin: 2px 0 8px; }
+  .pub .p-desc { color: var(--muted); font-size: 0.97rem; }
+
+  /* building log */
+  .build-note { color: var(--muted); margin-bottom: 20px; max-width: 34em; }
+  .ship { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; }
+  .ship:first-of-type { border-top: 1px solid var(--line); }
+  .ship:hover .s-name { color: var(--accent); }
+  .s-name { font-weight: 700; }
+  .s-name .arrow { color: var(--accent); font-weight: 400; }
+  .s-desc { color: var(--muted); font-size: 0.95rem; margin-top: 2px; }
+  .s-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .s-meta .live { color: var(--accent); }
+
+  /* timeline */
+  .tl { list-style: none; }
+  .tl li { display: flex; gap: 20px; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .tl li:last-child { border-bottom: none; }
+  .t-date { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13px; color: var(--muted); min-width: 108px; padding-top: 3px; }
+
+  /* contact */
+  .contact-line { font-size: 1.1rem; margin-bottom: 18px; }
+  .contact-links { display: flex; flex-direction: column; gap: 10px; }
+  .contact-links a { color: var(--ink); text-decoration: none; font-weight: 600; width: fit-content;
+    border-bottom: 2px solid var(--accent); }
+  .contact-links a:hover { color: var(--accent); }
+  .contact-links .c-label { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px; color: var(--muted); font-weight: 400; margin-right: 10px; }
+
+  footer { padding: 40px 0 64px; border-top: 1px solid var(--line); color: var(--muted);
+    font-size: 13px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer .f-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+
+  @media (max-width: 560px) {
+    nav.topnav a.navlink { display: none; }
+    .hero { padding: 60px 0 48px; }
+    .tl li { gap: 12px; }
+    .t-date { min-width: 92px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="#">J<span>.</span> Tian</a>
+    <nav class="topnav">
+      <a class="navlink" href="#investing" data-i18n="nav1">Investing</a>
+      <a class="navlink" href="#writing" data-i18n="nav2">Writing</a>
+      <a class="navlink" href="#building" data-i18n="nav3">Building</a>
+      <a class="navlink" href="#contact" data-i18n="nav4">Contact</a>
+      <button id="lang-toggle" aria-label="switch language">中文</button>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="kicker" data-i18n="kicker">John Tian <b>·</b> Beijing</div>
+    <h1>John Tian</h1>
+    <div class="tagline"><span data-i18n="tagline">Investing and building globally</span><span class="dot">.</span></div>
+    <p class="intro" data-i18n="intro"></p>
+  </div>
+
+  <section id="investing">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2><span data-i18n="s1t">Investing</span> <span class="sec-zh" data-i18n="s1zh">投资</span></h2>
+    </div>
+    <p class="memo-lede" data-i18n="s1lede"></p>
+    <ul class="memo-list">
+      <li><span class="m-label" data-i18n="s1a_l">Stage</span><span data-i18n="s1a"></span></li>
+      <li><span class="m-label" data-i18n="s1b_l">Geography</span><span data-i18n="s1b"></span></li>
+      <li><span class="m-label" data-i18n="s1c_l">How to reach me</span><span data-i18n="s1c"></span></li>
+    </ul>
+  </section>
+
+  <section id="writing">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2><span data-i18n="s2t">Writing</span> <span class="sec-zh" data-i18n="s2zh">写作</span></h2>
+    </div>
+    <a class="pub" href="https://readthesignal.co" target="_blank" rel="noopener">
+      <div class="p-name">The Signal <span class="arrow">↗</span></div>
+      <div class="p-url">readthesignal.co</div>
+      <div class="p-desc" data-i18n="sig_d"></div>
+    </a>
+    <a class="pub" href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">
+      <div class="p-name"><span data-i18n="memo_n">投资实习所 / Memo</span> <span class="arrow">↗</span></div>
+      <div class="p-url" data-i18n="memo_u">WeChat newsletter · 微信公众号</div>
+      <div class="p-desc" data-i18n="memo_d"></div>
+    </a>
+  </section>
+
+  <section id="building">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2><span data-i18n="s3t">Building</span> <span class="sec-zh" data-i18n="s3zh">创造</span></h2>
+    </div>
+    <p class="build-note" data-i18n="build_note"></p>
+    <a class="ship" href="https://arr.club" target="_blank" rel="noopener">
+      <div>
+        <div class="s-name">arr.club <span class="arrow">↗</span></div>
+        <div class="s-desc" data-i18n="arr_d"></div>
+      </div>
+      <div class="s-meta"><span class="live">●</span> LIVE</div>
+    </a>
+    <a class="ship" href="https://vidsizer.com" target="_blank" rel="noopener">
+      <div>
+        <div class="s-name">vidsizer.com <span class="arrow">↗</span></div>
+        <div class="s-desc" data-i18n="vid_d"></div>
+      </div>
+      <div class="s-meta"><span class="live">●</span> LIVE</div>
+    </a>
+  </section>
+
+  <section id="background">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2><span data-i18n="s4t">Background</span> <span class="sec-zh" data-i18n="s4zh">背景</span></h2>
+    </div>
+    <ul class="tl">
+      <li><span class="t-date">2024 — now</span><span data-i18n="t1"></span></li>
+      <li><span class="t-date">2020 — now</span><span data-i18n="t2"></span></li>
+      <li><span class="t-date">2021 — 2022</span><span data-i18n="t3"></span></li>
+      <li><span class="t-date">2019 — 2021</span><span data-i18n="t4"></span></li>
+      <li><span class="t-date">2014 — 2018</span><span data-i18n="t5"></span></li>
+      <li><span class="t-date">2012 — 2014</span><span data-i18n="t6"></span></li>
+      <li><span class="t-date">2005 — 2009</span><span data-i18n="t7"></span></li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2><span data-i18n="s5t">Contact</span> <span class="sec-zh" data-i18n="s5zh">联系</span></h2>
+    </div>
+    <p class="contact-line" data-i18n="c_lede"></p>
+    <div class="contact-links">
+      <div><span class="c-label">EMAIL</span><a href="mailto:johntian2015@gmail.com">johntian2015@gmail.com</a></div>
+      <div><span class="c-label">LINKEDIN</span><a href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">linkedin.com/in/johntian</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 John Tian</span>
+    <span class="f-mono" data-i18n="footer"></span>
+  </footer>
+
+</div>
+
+<script>
+const I18N = {
+  en: {
+    nav1: "Investing", nav2: "Writing", nav3: "Building", nav4: "Contact",
+    kicker: "John Tian · Beijing",
+    tagline: "Investing and building globally",
+    intro: "I'm the <strong>founder of The Signal</strong>, writing about AI startups and investing across borders. I run <strong>投资实习所</strong>, a Chinese newsletter read by <strong>100,000+ founders and investors</strong>. Previously: Editor-in-Chief at 36Kr, co-founder of Kr Space, Partner at UpHonest Capital, MD at 盈动资本.",
+    s1t: "Investing", s1zh: "投资",
+    s1lede: "I invest globally in early-stage AI companies. I like meeting founders early — the earlier, the better.",
+    s1a_l: "Stage", s1a: "Earliest stages. Pre-seed and seed, AI-first.",
+    s1b_l: "Geography", s1b: "Global. I work across the US, China, and everywhere ambitious founders are.",
+    s1c_l: "How to reach me", s1c: "Email me in English or Chinese — one paragraph on what you're building is enough.",
+    s2t: "Writing", s2zh: "写作",
+    sig_d: "Notes on AI startups and investing, in English — where my investment thinking lives.",
+    memo_n: "投资实习所 / Memo", memo_u: "WeChat newsletter · 微信公众号",
+    memo_d: "A Chinese newsletter on startups and investing, read by 100,000+ founders and investors worldwide.",
+    s3t: "Building", s3zh: "创造",
+    build_note: "I build small products with AI coding tools — mostly in the browser, for fun and for revenue. Shipping is my favorite form of thinking.",
+    arr_d: "Tracks ARR and growth signals of AI and SaaS companies.",
+    vid_d: "Compress any video to any exact size, entirely in the browser.",
+    s4t: "Background", s4zh: "背景",
+    t1: "Founder, The Signal", t2: "Founder, 投资实习所 / Memo",
+    t3: "Managing Director, 盈动资本", t4: "Partner, UpHonest Capital",
+    t5: "Co-founder, 氪空间 Kr Space", t6: "Editor-in-Chief, 36Kr",
+    t7: "B.S. Applied Mathematics, Xiamen University",
+    s5t: "Contact", s5zh: "联系",
+    c_lede: "For investments, writing, or just saying hi:",
+    footer: "Set in system type · No cookies, no tracking"
+  },
+  zh: {
+    nav1: "投资", nav2: "写作", nav3: "创造", nav4: "联系",
+    kicker: "John Tian · 北京",
+    tagline: "在全球投资，也在全球创造",
+    intro: "我是 <strong>The Signal 的创始人</strong>，写关于全球 AI 创业与投资的内容。我运营<strong>投资实习所</strong>，一个有 <strong>10 万+创始人与投资人</strong>订阅的中文创投通讯。此前：36Kr 主编、氪空间联合创始人、UpHonest Capital 合伙人、盈动资本董事总经理。",
+    s1t: "投资", s1zh: "INVESTING",
+    s1lede: "我在全球投资早期 AI 公司。喜欢尽早见到创始人——越早越好。",
+    s1a_l: "阶段", s1a: "最早期的阶段。Pre-seed 和种子轮，AI 优先。",
+    s1b_l: "地域", s1b: "全球。美国、中国，以及所有有野心创始人的地方。",
+    s1c_l: "联系我", s1c: "中英文都可以直接发邮件——一段话讲清楚你在做什么就够了。",
+    s2t: "写作", s2zh: "WRITING",
+    sig_d: "关于 AI 创业与全球投资的英文写作——我的投资思考都放在这里。",
+    memo_n: "投资实习所 / Memo", memo_u: "微信公众号 · WeChat newsletter",
+    memo_d: "有 10 万+全球创始人与投资人订阅的中文创投通讯。",
+    s3t: "创造", s3zh: "BUILDING",
+    build_note: "我用 AI 编程工具做小产品——大多在浏览器端完成，为乐趣，也为收入。动手是我最喜欢的思考方式。",
+    arr_d: "追踪 AI 与 SaaS 公司的 ARR 和增长信号。",
+    vid_d: "在浏览器里把视频压缩到任意精确大小。",
+    s4t: "背景", s4zh: "BACKGROUND",
+    t1: "创始人，The Signal", t2: "创始人，投资实习所 / Memo",
+    t3: "董事总经理，盈动资本", t4: "合伙人，UpHonest Capital",
+    t5: "联合创始人，氪空间 Kr Space", t6: "主编，36Kr",
+    t7: "应用数学学士，厦门大学",
+    s5t: "联系", s5zh: "CONTACT",
+    c_lede: "谈投资、谈写作，或只是打个招呼，都欢迎：",
+    footer: "系统字体排印 · 无 cookie，不追踪"
+  }
+};
+
+const toggle = document.getElementById("lang-toggle");
+let lang = localStorage.getItem("jt-lang") || "en";
+
+function applyLang(l) {
+  lang = l;
+  document.documentElement.lang = l === "zh" ? "zh-CN" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (I18N[l][key] !== undefined) el.innerHTML = I18N[l][key];
+  });
+  toggle.textContent = l === "zh" ? "EN" : "中文";
+  try { localStorage.setItem("jt-lang", l); } catch (e) {}
+}
+
+toggle.addEventListener("click", () => applyLang(lang === "zh" ? "en" : "zh"));
+applyLang(lang);
+</script>
+</body>
+</html>
