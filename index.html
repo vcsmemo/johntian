@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>John Tian — Investing and building globally</title>
-<meta name="description" content="John Tian: Founder of The Signal, 投资实习所. Investing globally in early-stage AI. Previously 36Kr, Kr Space, UpHonest Capital.">
+<meta name="description" content="John Tian: Founder of The Signal, 投资实习所. Investing globally in early-stage AI. Early investor in GrubMarket. Previously 36Kr, Kr Space, UpHonest Capital.">
 <style>
   :root {
     --paper: #ffffff;
@@ -126,6 +126,12 @@
   .t-date { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     font-size: 13px; color: var(--muted); min-width: 108px; padding-top: 3px; }
 
+  /* personal */
+  .photo { margin: 0 0 20px; }
+  .photo img { width: 100%; max-width: 520px; border-radius: 10px; display: block; }
+  .photo figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 10px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
   /* contact */
   .contact-line { font-size: 1.1rem; margin-bottom: 18px; }
   .contact-links { display: flex; flex-direction: column; gap: 10px; }
@@ -156,7 +162,8 @@
       <a class="navlink" href="#investing" data-i18n="nav1">Investing</a>
       <a class="navlink" href="#writing" data-i18n="nav2">Writing</a>
       <a class="navlink" href="#building" data-i18n="nav3">Building</a>
-      <a class="navlink" href="#contact" data-i18n="nav4">Contact</a>
+      <a class="navlink" href="#reading" data-i18n="nav4">Reading</a>
+      <a class="navlink" href="#contact" data-i18n="nav5">Contact</a>
       <button id="lang-toggle" aria-label="switch language">中文</button>
     </nav>
   </header>
@@ -177,6 +184,7 @@
     <ul class="memo-list">
       <li><span class="m-label" data-i18n="s1a_l">Stage</span><span data-i18n="s1a"></span></li>
       <li><span class="m-label" data-i18n="s1b_l">Geography</span><span data-i18n="s1b"></span></li>
+      <li><span class="m-label" data-i18n="s1n_l">Notable</span><span data-i18n="s1n"></span></li>
       <li><span class="m-label" data-i18n="s1c_l">How to reach me</span><span data-i18n="s1c"></span></li>
     </ul>
   </section>
@@ -218,12 +226,32 @@
       </div>
       <div class="s-meta"><span class="live">●</span> LIVE</div>
     </a>
+    <a class="ship" href="https://vcsmemo.com" target="_blank" rel="noopener">
+      <div>
+        <div class="s-name">vcsmemo.com <span class="arrow">↗</span></div>
+        <div class="s-desc" data-i18n="vcs_d"></div>
+      </div>
+      <div class="s-meta"><span data-i18n="wip">IN PROGRESS</span></div>
+    </a>
+  </section>
+
+  <section id="reading">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2><span data-i18n="s4t">Reading</span> <span class="sec-zh" data-i18n="s4zh">阅读</span></h2>
+    </div>
+    <p class="build-note" data-i18n="read_note"></p>
+    <ul class="memo-list">
+      <li><span class="m-label" data-i18n="r1_l">Book · sample</span><span data-i18n="r1"></span></li>
+      <li><span class="m-label" data-i18n="r2_l">Book · sample</span><span data-i18n="r2"></span></li>
+      <li><span class="m-label" data-i18n="r3_l">Essay · sample</span><span data-i18n="r3"></span></li>
+    </ul>
   </section>
 
   <section id="background">
     <div class="sec-head">
-      <span class="sec-num">04</span>
-      <h2><span data-i18n="s4t">Background</span> <span class="sec-zh" data-i18n="s4zh">背景</span></h2>
+      <span class="sec-num">05</span>
+      <h2><span data-i18n="s5t">Background</span> <span class="sec-zh" data-i18n="s5zh">背景</span></h2>
     </div>
     <ul class="tl">
       <li><span class="t-date">2024 — now</span><span data-i18n="t1"></span></li>
@@ -236,10 +264,22 @@
     </ul>
   </section>
 
+  <section id="personal">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2><span data-i18n="s6t">Personal</span> <span class="sec-zh" data-i18n="s6zh">生活</span></h2>
+    </div>
+    <figure class="photo">
+      <img src="garry-tan.jpg" alt="John Tian with Garry Tan">
+      <figcaption data-i18n="photo_cap"></figcaption>
+    </figure>
+    <p class="build-note" data-i18n="personal_note"></p>
+  </section>
+
   <section id="contact">
     <div class="sec-head">
-      <span class="sec-num">05</span>
-      <h2><span data-i18n="s5t">Contact</span> <span class="sec-zh" data-i18n="s5zh">联系</span></h2>
+      <span class="sec-num">07</span>
+      <h2><span data-i18n="s7t">Contact</span> <span class="sec-zh" data-i18n="s7zh">联系</span></h2>
     </div>
     <p class="contact-line" data-i18n="c_lede"></p>
     <div class="contact-links">
@@ -258,14 +298,15 @@
 <script>
 const I18N = {
   en: {
-    nav1: "Investing", nav2: "Writing", nav3: "Building", nav4: "Contact",
+    nav1: "Investing", nav2: "Writing", nav3: "Building", nav4: "Reading", nav5: "Contact",
     kicker: "John Tian · Beijing",
     tagline: "Investing and building globally",
     intro: "I'm the <strong>founder of The Signal</strong>, writing about AI startups and investing across borders. I run <strong>投资实习所</strong>, a Chinese newsletter read by <strong>100,000+ founders and investors</strong>. Previously: Editor-in-Chief at 36Kr, co-founder of Kr Space, Partner at UpHonest Capital, MD at 盈动资本.",
     s1t: "Investing", s1zh: "投资",
     s1lede: "I invest globally in early-stage AI companies. I like meeting founders early — the earlier, the better.",
     s1a_l: "Stage", s1a: "Earliest stages. Pre-seed and seed, AI-first.",
-    s1b_l: "Geography", s1b: "Global. I work across the US, China, and everywhere ambitious founders are.",
+    s1b_l: "Geography", s1b: "US + China. My whole career has been across both markets — media, startups, and investing.",
+    s1n_l: "Notable", s1n: "Early investor in GrubMarket.",
     s1c_l: "How to reach me", s1c: "Email me in English or Chinese — one paragraph on what you're building is enough.",
     s2t: "Writing", s2zh: "写作",
     sig_d: "Notes on AI startups and investing, in English — where my investment thinking lives.",
@@ -275,24 +316,35 @@ const I18N = {
     build_note: "I build small products with AI coding tools — mostly in the browser, for fun and for revenue. Shipping is my favorite form of thinking.",
     arr_d: "Tracks ARR and growth signals of AI and SaaS companies.",
     vid_d: "Compress any video to any exact size, entirely in the browser.",
-    s4t: "Background", s4zh: "背景",
+    vcs_d: "A media site about venture capital — in the works.",
+    wip: "IN PROGRESS",
+    s4t: "Reading", s4zh: "阅读",
+    read_note: "A running shelf of what I'm reading — books and essays that shape how I think.",
+    r1_l: "Book · sample", r1: "<em>The Power Law</em> — Sebastian Mallaby",
+    r2_l: "Book · sample", r2: "<em>Chip War</em> — Chris Miller",
+    r3_l: "Essay · sample", r3: "A recent Stratechery piece by Ben Thompson",
+    s5t: "Background", s5zh: "背景",
     t1: "Founder, The Signal", t2: "Founder, 投资实习所 / Memo",
     t3: "Managing Director, 盈动资本", t4: "Partner, UpHonest Capital",
-    t5: "Co-founder, 氪空间 Kr Space", t6: "Editor-in-Chief, 36Kr",
+    t5: "Co-founder, 氪空间 Kr Space", t6: "Editor-in-Chief, 36Kr — from the early days through its NASDAQ listing",
     t7: "B.S. Applied Mathematics, Xiamen University",
-    s5t: "Contact", s5zh: "联系",
+    s6t: "Personal", s6zh: "生活",
+    photo_cap: "With Garry Tan (YC) in Beijing.",
+    personal_note: "Father of one. Owned by two Maltese dogs.",
+    s7t: "Contact", s7zh: "联系",
     c_lede: "For investments, writing, or just saying hi:",
     footer: "Set in system type · No cookies, no tracking"
   },
   zh: {
-    nav1: "投资", nav2: "写作", nav3: "创造", nav4: "联系",
+    nav1: "投资", nav2: "写作", nav3: "创造", nav4: "阅读", nav5: "联系",
     kicker: "John Tian · 北京",
     tagline: "在全球投资，也在全球创造",
     intro: "我是 <strong>The Signal 的创始人</strong>，写关于全球 AI 创业与投资的内容。我运营<strong>投资实习所</strong>，一个有 <strong>10 万+创始人与投资人</strong>订阅的中文创投通讯。此前：36Kr 主编、氪空间联合创始人、UpHonest Capital 合伙人、盈动资本董事总经理。",
     s1t: "投资", s1zh: "INVESTING",
     s1lede: "我在全球投资早期 AI 公司。喜欢尽早见到创始人——越早越好。",
     s1a_l: "阶段", s1a: "最早期的阶段。Pre-seed 和种子轮，AI 优先。",
-    s1b_l: "地域", s1b: "全球。美国、中国，以及所有有野心创始人的地方。",
+    s1b_l: "地域", s1b: "中美两边。我的整个职业生涯都在这两个市场——媒体、创业、投资。",
+    s1n_l: "代表作", s1n: "GrubMarket 的早期投资人。",
     s1c_l: "联系我", s1c: "中英文都可以直接发邮件——一段话讲清楚你在做什么就够了。",
     s2t: "写作", s2zh: "WRITING",
     sig_d: "关于 AI 创业与全球投资的英文写作——我的投资思考都放在这里。",
@@ -302,12 +354,22 @@ const I18N = {
     build_note: "我用 AI 编程工具做小产品——大多在浏览器端完成，为乐趣，也为收入。动手是我最喜欢的思考方式。",
     arr_d: "追踪 AI 与 SaaS 公司的 ARR 和增长信号。",
     vid_d: "在浏览器里把视频压缩到任意精确大小。",
-    s4t: "背景", s4zh: "BACKGROUND",
+    vcs_d: "关于风险投资的媒体站——开发中。",
+    wip: "进行中",
+    s4t: "阅读", s4zh: "READING",
+    read_note: "最近在读、常翻的书和文章，都放在这里。",
+    r1_l: "书 · 示例", r1: "示例 — 《The Power Law》，Sebastian Mallaby",
+    r2_l: "书 · 示例", r2: "示例 — 《Chip War》，Chris Miller",
+    r3_l: "文章 · 示例", r3: "示例 — Ben Thompson 的一篇 Stratechery",
+    s5t: "背景", s5zh: "BACKGROUND",
     t1: "创始人，The Signal", t2: "创始人，投资实习所 / Memo",
     t3: "董事总经理，盈动资本", t4: "合伙人，UpHonest Capital",
-    t5: "联合创始人，氪空间 Kr Space", t6: "主编，36Kr",
+    t5: "联合创始人，氪空间 Kr Space", t6: "主编，36Kr——从早期一直到纳斯达克上市",
     t7: "应用数学学士，厦门大学",
-    s5t: "联系", s5zh: "CONTACT",
+    s6t: "生活", s6zh: "PERSONAL",
+    photo_cap: "和 YC 的 Garry Tan 在北京。",
+    personal_note: "一个孩子的父亲，被两只马尔济斯犬拥有。",
+    s7t: "联系", s7zh: "CONTACT",
     c_lede: "谈投资、谈写作，或只是打个招呼，都欢迎：",
     footer: "系统字体排印 · 无 cookie，不追踪"
   }
