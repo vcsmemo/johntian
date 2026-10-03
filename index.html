@@ -7,11 +7,8 @@
 <meta name="description" content="John Tian: Founder of The Signal, 投资实习所. Investing globally in early-stage AI. Early investor in GrubMarket. Previously 36Kr, Kr Space, UpHonest Capital.">
 <meta property="og:title" content="John Tian — Investing and building globally">
 <meta property="og:description" content="Partner at Socle Partners (FunPlus). Founder of The Signal. Investor, writer, builder.">
-<meta property="og:image" content="https://johntian-3hx.pages.dev/avatar.jpg">
 <meta property="og:url" content="https://johntian-3hx.pages.dev">
 <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://johntian-3hx.pages.dev/avatar.jpg">
 <style>
   :root {
     --paper: #ffffff;
@@ -288,7 +285,7 @@
     </div>
     <p class="contact-line" data-i18n="c_lede"></p>
     <div class="contact-links">
-      <div><span class="c-label">EMAIL</span><a href="mailto:johntian2015@gmail.com">johntian2015@gmail.com</a></div>
+      <div><span class="c-label">EMAIL</span><a href="#" id="email-link">Email me</a></div>
       <div><span class="c-label">LINKEDIN</span><a href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">linkedin.com/in/johntian</a></div>
     </div>
   </section>
@@ -398,6 +395,7 @@ function applyLang(l) {
   toggle.textContent = l === "zh" ? "EN" : "中文";
   try { localStorage.setItem("jt-lang", l); } catch (e) {}
   renderReading();
+  renderEmail();
 }
 
 function renderReading() {
@@ -419,6 +417,14 @@ function renderReading() {
 
 toggle.addEventListener("click", () => applyLang(lang === "zh" ? "en" : "zh"));
 applyLang(lang);
+
+// assemble the email address in JS so it never appears in plain text in the HTML source
+function renderEmail() {
+  var u = "johntian2015", d = "gmail.com";
+  var a = document.getElementById("email-link");
+  if (a) { a.href = "mailto:" + u + "@" + d; a.textContent = u + "@" + d; }
+}
+renderEmail();
 </script>
 </body>
 </html>
