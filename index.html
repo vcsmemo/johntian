@@ -73,6 +73,8 @@
   .tagline .dot { color: var(--accent); }
   .intro { color: var(--muted); max-width: 34em; }
   .intro strong { color: var(--ink); font-weight: 600; }
+  .intro a { color: var(--ink); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .intro a:hover { color: var(--accent); }
 
   /* sections */
   section { padding: 56px 0; border-top: 1px solid var(--line); }
@@ -250,6 +252,7 @@
       <h2><span data-i18n="s5t">Background</span> <span class="sec-zh" data-i18n="s5zh">背景</span></h2>
     </div>
     <ul class="tl">
+      <li><span class="t-date" data-i18n="t0d">now</span><span data-i18n="t0"></span></li>
       <li><span class="t-date">2024 — now</span><span data-i18n="t1"></span></li>
       <li><span class="t-date">2020 — now</span><span data-i18n="t2"></span></li>
       <li><span class="t-date">2021 — 2022</span><span data-i18n="t3"></span></li>
@@ -297,10 +300,10 @@ const I18N = {
     nav1: "Investing", nav2: "Writing", nav3: "Building", nav4: "Reading", nav5: "Contact",
     kicker: "John Tian · Beijing",
     tagline: "Investing and building globally",
-    intro: "I'm the <strong>founder of The Signal</strong>, writing about AI startups and investing across borders. I run <strong>投资实习所</strong>, a Chinese newsletter read by <strong>100,000+ founders and investors</strong>. Previously: Editor-in-Chief at 36Kr, co-founder of Kr Space, Partner at UpHonest Capital, MD at 盈动资本.",
+    intro: "I'm a <strong>Partner at <a href=\"https://www.soclepartners.com\" target=\"_blank\" rel=\"noopener\">Socle Partners</a></strong> (FunPlus), investing globally in AI infrastructure and frontier AI. I founded <strong>The Signal</strong>, writing about AI startups across borders, and run <strong>投资实习所</strong>, a Chinese newsletter read by <strong>100,000+ founders and investors</strong>. Previously: Editor-in-Chief at 36Kr, co-founder of Kr Space, Partner at UpHonest Capital, MD at 盈动资本.",
     s1t: "Investing", s1zh: "投资",
-    s1lede: "I invest globally in early-stage AI companies. I like meeting founders early — the earlier, the better.",
-    s1a_l: "Stage", s1a: "Earliest stages. Pre-seed and seed, AI-first.",
+    s1lede: "As a Partner at Socle Partners, I back technical founders at the inception of category-defining AI companies — foundation models, AI infrastructure, and the physical-digital convergence. I like meeting founders early — the earlier, the better.",
+    s1a_l: "Stage", s1a: "Inception to early. AI-first, at the systems level.",
     s1b_l: "Geography", s1b: "US + China. My whole career has been across both markets — media, startups, and investing.",
     s1n_l: "Notable", s1n: "Early investor in GrubMarket.",
     s1c_l: "How to reach me", s1c: "Email me in English or Chinese — one paragraph on what you're building is enough.",
@@ -322,12 +325,13 @@ const I18N = {
       { label: "Essay · sample", title: "A recent Stratechery piece by Ben Thompson" }
     ],
     s5t: "Background", s5zh: "背景",
+    t0d: "now", t0: "Partner, Socle Partners (FunPlus)",
     t1: "Founder, The Signal", t2: "Founder, 投资实习所 / Memo",
     t3: "Managing Director, 盈动资本", t4: "Partner, UpHonest Capital",
     t5: "Co-founder, 氪空间 Kr Space", t6: "Editor-in-Chief, 36Kr — from the early days through its NASDAQ listing",
     t7: "B.S. Applied Mathematics, Xiamen University",
     s6t: "Personal", s6zh: "生活",
-    photo_cap: "With Garry Tan (YC) in Beijing.",
+    photo_cap: "With Garry Tan at YC's HQ, 2015.",
     personal_note: "Father of one. Owned by two Maltese dogs.",
     s7t: "Contact", s7zh: "联系",
     c_lede: "For investments, writing, or just saying hi:",
@@ -337,10 +341,10 @@ const I18N = {
     nav1: "投资", nav2: "写作", nav3: "创造", nav4: "阅读", nav5: "联系",
     kicker: "John Tian · 北京",
     tagline: "在全球投资，也在全球创造",
-    intro: "我是 <strong>The Signal 的创始人</strong>，写关于全球 AI 创业与投资的内容。我运营<strong>投资实习所</strong>，一个有 <strong>10 万+创始人与投资人</strong>订阅的中文创投通讯。此前：36Kr 主编、氪空间联合创始人、UpHonest Capital 合伙人、盈动资本董事总经理。",
+    intro: "我是 <strong><a href=\"https://www.soclepartners.com\" target=\"_blank\" rel=\"noopener\">Socle Partners</a>（FunPlus 旗下）的合伙人</strong>，在全球投资 AI 基础设施与前沿 AI。我创办了 <strong>The Signal</strong>，写关于全球 AI 创业与投资的内容；运营<strong>投资实习所</strong>，一个有 <strong>10 万+创始人与投资人</strong>订阅的中文创投通讯。此前：36Kr 主编、氪空间联合创始人、UpHonest Capital 合伙人、盈动资本董事总经理。",
     s1t: "投资", s1zh: "INVESTING",
-    s1lede: "我在全球投资早期 AI 公司。喜欢尽早见到创始人——越早越好。",
-    s1a_l: "阶段", s1a: "最早期的阶段。Pre-seed 和种子轮，AI 优先。",
+    s1lede: "作为 Socle Partners 的合伙人，我在最早期的阶段支持技术创始人——基础模型、AI 基础设施、物理与数字的融合。喜欢尽早见到创始人——越早越好。",
+    s1a_l: "阶段", s1a: "从 inception 到早期。AI 优先，看系统层。",
     s1b_l: "地域", s1b: "中美两边。我的整个职业生涯都在这两个市场——媒体、创业、投资。",
     s1n_l: "代表作", s1n: "GrubMarket 的早期投资人。",
     s1c_l: "联系我", s1c: "中英文都可以直接发邮件——一段话讲清楚你在做什么就够了。",
@@ -362,12 +366,13 @@ const I18N = {
       { label: "文章 · 示例", title: "示例 — Ben Thompson 的一篇 Stratechery" }
     ],
     s5t: "背景", s5zh: "BACKGROUND",
+    t0d: "至今", t0: "合伙人，Socle Partners（FunPlus）",
     t1: "创始人，The Signal", t2: "创始人，投资实习所 / Memo",
     t3: "董事总经理，盈动资本", t4: "合伙人，UpHonest Capital",
     t5: "联合创始人，氪空间 Kr Space", t6: "主编，36Kr——从早期一直到纳斯达克上市",
     t7: "应用数学学士，厦门大学",
     s6t: "生活", s6zh: "PERSONAL",
-    photo_cap: "和 YC 的 Garry Tan 在北京。",
+    photo_cap: "2015 年，在 YC 美国总部和 Garry Tan。",
     personal_note: "一个孩子的父亲，被两只马尔济斯犬拥有。",
     s7t: "联系", s7zh: "CONTACT",
     c_lede: "谈投资、谈写作，或只是打个招呼，都欢迎：",
