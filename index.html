@@ -33,10 +33,24 @@
   a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--acc); }
   a:hover { color:var(--acc); }
   .cell p a, .cell li a { color:var(--ink); }
-  .photo { padding:44px 0 10px; display:flex; gap:28px; align-items:flex-end; flex-wrap:wrap; }
-  .photo img { width:280px; border-radius:6px; display:block; filter:saturate(.85); }
-  .photo figcaption { color:var(--mut); font-size:13px; font-family:ui-monospace,Menlo,monospace; margin-top:8px; }
-  .photo .note { color:var(--mut); font-size:16px; max-width:300px; }
+  .photo { padding:44px 0 10px; display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  .photo img.avatar { width:104px; height:104px; border-radius:50%; display:block; object-fit:cover;
+    border:2px solid var(--line); }
+  .photo .note { color:var(--mut); font-size:16px; max-width:340px; }
+  .notes { border-top:1px solid var(--line); padding:34px 0 6px; }
+  .notes .n { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--mut); display:block; margin-bottom:10px; }
+  .notes h3 { font-size:20px; letter-spacing:-0.01em; margin-bottom:4px; }
+  .notes .hint { color:var(--mut); font-size:14px; margin-bottom:8px; }
+  .note-item { border-bottom:1px solid var(--line); }
+  .note-item summary { cursor:pointer; list-style:none; padding:16px 0; }
+  .note-item summary::-webkit-details-marker { display:none; }
+  .note-item .date { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--mut); }
+  .note-item h4 { font-size:17px; font-weight:600; margin-top:4px; display:inline; }
+  .note-item summary:hover h4 { color:var(--acc); }
+  .note-item .sample-tag { font-size:12px; color:var(--acc); border:1px solid var(--acc);
+    border-radius:4px; padding:1px 7px; margin-left:8px; vertical-align:2px; white-space:nowrap; }
+  .note-item .body { padding:2px 0 20px; }
+  .note-item .body p { color:var(--mut); font-size:15.5px; line-height:1.75; margin-bottom:10px; max-width:44em; }
   footer { padding:40px 0 80px; color:var(--mut); font-size:14px; display:flex;
     justify-content:space-between; flex-wrap:wrap; gap:10px; }
   ::selection { background:var(--acc); color:#000; }
@@ -56,8 +70,14 @@
     <div class="cell"><span class="n">03</span><h3 data-i18n="t3">Building</h3><p data-i18n="p3"></p></div>
     <div class="cell"><span class="n">04</span><h3 data-i18n="t4">Reading</h3><ul id="reading-list"></ul></div>
   </div>
+  <section class="notes">
+    <span class="n">05</span>
+    <h3 data-i18n="t5">Notes</h3>
+    <p class="hint" data-i18n="notes_hint"></p>
+    <div id="notes-list"></div>
+  </section>
   <div class="photo">
-    <figure><img src="garry-tan.jpg" alt="John Tian with Garry Tan"><figcaption data-i18n="photo_cap"></figcaption></figure>
+    <img class="avatar" src="avatar-cartoon.jpg" alt="John Tian">
     <p class="note" data-i18n="personal"></p>
   </div>
   <footer><span><a href="#" id="email-link">Email</a> · <a href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">LinkedIn</a></span><span>© 2026 John Tian</span></footer>
@@ -71,7 +91,7 @@ const I18N = {
     t3:"Building", p3:'<a href="https://arr.club" target="_blank" rel="noopener">arr.club</a> — ARR tracking. <a href="https://vidsizer.com" target="_blank" rel="noopener">vidsizer.com</a> — video compression. Built with AI coding tools.',
     t4:"Reading",
     reading:['<em>The Power Law</em> [sample]','<em>Chip War</em> [sample]','Stratechery [sample]'],
-    photo_cap:"YC HQ, 2015 — with Garry Tan.",
+    t5:"Notes", notes_hint:"Short essays, in Chinese or English. Newest first.",
     personal:"Previously: 36Kr (IPO), Kr Space, UpHonest, InCapital. Father of one, owned by two Maltese dogs."
   },
   zh: {
@@ -81,10 +101,24 @@ const I18N = {
     t3:"创造", p3:'<a href="https://arr.club" target="_blank" rel="noopener">arr.club</a> —— ARR 追踪。<a href="https://vidsizer.com" target="_blank" rel="noopener">vidsizer.com</a> —— 视频压缩。用 AI 编程工具做的。',
     t4:"阅读",
     reading:['《The Power Law》[示例]','《Chip War》[示例]','Stratechery [示例]'],
-    photo_cap:"2015，YC 美国总部 —— 和 Garry Tan。",
+    t5:"随笔", notes_hint:"短文随笔，中文英文都可以。新的在上面。",
     personal:"此前：36Kr（上市）、氪空间、UpHonest、盈动资本。一个孩子的父亲，被两只马尔济斯犬拥有。"
   }
 };
+const NOTES = [
+  { date:"2026-10-05", sample:true,
+    title:"第一条笔记（示例）",
+    body:["这是一条示例笔记，用来展示随笔区的样子。以后你写的东西都会以同样的格式出现在这里，新的排在上面。",
+          "想加笔记时直接发消息给我就行——标题加正文，我来排版上线。"] }
+];
+function renderNotes(){ const box=document.getElementById("notes-list"); if(!box) return; box.innerHTML="";
+  NOTES.forEach(function(n,i){ const d=document.createElement("details"); d.className="note-item"; if(i===0) d.open=true;
+    const s=document.createElement("summary");
+    s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+n.title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
+    d.appendChild(s);
+    const b=document.createElement("div"); b.className="body";
+    n.body.forEach(function(p){ const pe=document.createElement("p"); pe.textContent=p; b.appendChild(pe); });
+    d.appendChild(b); box.appendChild(d); }); }
 const toggle = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("jt-lang") || "en";
 function renderReading(){ const ul=document.getElementById("reading-list"); if(!ul) return; ul.innerHTML="";
@@ -95,7 +129,7 @@ function applyLang(l){ lang=l; document.documentElement.lang=l==="zh"?"zh-CN":"e
   document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n");
     if(I18N[l][k]!==undefined) el.innerHTML=I18N[l][k]; });
   toggle.textContent=l==="zh"?"EN":"中文";
-  try{localStorage.setItem("jt-lang",l);}catch(e){} renderReading(); renderEmail(); }
+  try{localStorage.setItem("jt-lang",l);}catch(e){} renderReading(); renderNotes(); renderEmail(); }
 toggle.addEventListener("click",()=>applyLang(lang==="zh"?"en":"zh"));
 applyLang(lang);
 </script>
