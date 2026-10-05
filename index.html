@@ -43,6 +43,7 @@
   .prev-grid li { padding:12px 0; border-bottom:1px solid var(--line); font-size:16.5px; }
   .prev-grid li:last-child { border-bottom:none; }
   .prev-grid li .role { color:var(--mut); }
+  .prev-grid li .co-logo { height:22px; width:auto; vertical-align:-5px; margin-right:10px; border-radius:4px; }
   .prev-grid figure { flex-shrink:0; text-align:center; margin:0; padding-top:6px; }
   .prev-grid figure img { width:140px; height:140px; border-radius:50%; object-fit:cover; display:block;
     border:2px solid var(--line); margin:0 auto; }
@@ -114,10 +115,10 @@ const I18N = {
     t5:"Notes", notes_hint:"Short essays, in Chinese or English. Newest first.",
     t6:"Previously",
     prev:[
-      { name:'<a href="https://www.36kr.com" target="_blank" rel="noopener">36Kr</a> (IPO)', note:"Early founding team, Editor-in-Chief" },
-      { name:'<a href="https://www.uphonestcapital.com" target="_blank" rel="noopener">UpHonest Capital</a>', note:"Partner" },
-      { name:'<a href="https://www.grubmarket.com" target="_blank" rel="noopener">GrubMarket</a>', note:"Early investor" },
-      { name:"InCapital", note:"Managing Director" }
+      { logo:"logo-36kr.png", name:'<a href="https://www.36kr.com" target="_blank" rel="noopener">36Kr</a> (IPO)', note:"Early founding team, Editor-in-Chief" },
+      { logo:"logo-uphonest.svg", name:'<a href="https://www.uphonestcapital.com" target="_blank" rel="noopener">UpHonest Capital</a>', note:"Partner" },
+      { logo:"logo-grubmarket.png", name:'<a href="https://www.grubmarket.com" target="_blank" rel="noopener">GrubMarket</a>', note:"Early investor" },
+      { logo:null, name:"InCapital", note:"Managing Director" }
     ],
     photo_cap:"With Garry Tan at YC's HQ, 2015.",
     personal:"Father of one, owned by two Maltese dogs."
@@ -132,10 +133,10 @@ const I18N = {
     t5:"随笔", notes_hint:"短文随笔，中文英文都可以。新的在上面。",
     t6:"此前",
     prev:[
-      { name:'<a href="https://www.36kr.com" target="_blank" rel="noopener">36Kr</a>（IPO）', note:"早期创始团队、主编" },
-      { name:'<a href="https://www.uphonestcapital.com" target="_blank" rel="noopener">UpHonest Capital</a>', note:"合伙人" },
-      { name:'<a href="https://www.grubmarket.com" target="_blank" rel="noopener">GrubMarket</a>', note:"早期投资人" },
-      { name:"盈动资本", note:"董事总经理" }
+      { logo:"logo-36kr.png", name:'<a href="https://www.36kr.com" target="_blank" rel="noopener">36Kr</a>（IPO）', note:"早期创始团队、主编" },
+      { logo:"logo-uphonest.svg", name:'<a href="https://www.uphonestcapital.com" target="_blank" rel="noopener">UpHonest Capital</a>', note:"合伙人" },
+      { logo:"logo-grubmarket.png", name:'<a href="https://www.grubmarket.com" target="_blank" rel="noopener">GrubMarket</a>', note:"早期投资人" },
+      { logo:null, name:"盈动资本", note:"董事总经理" }
     ],
     photo_cap:"2015 年，在 YC 美国总部和 Garry Tan。",
     personal:"一个孩子的父亲，被两只马尔济斯犬拥有。"
@@ -149,7 +150,7 @@ const NOTES = [
 ];
 function renderPrev(){ const ul=document.getElementById("prev-list"); if(!ul) return; ul.innerHTML="";
   (I18N[lang].prev||[]).forEach(function(it){ const li=document.createElement("li");
-    li.innerHTML = it.name + ' <span class="role">— ' + it.note + "</span>"; ul.appendChild(li); }); }
+    li.innerHTML = (it.logo ? '<img class="co-logo" src="'+it.logo+'" alt="">' : "") + it.name + ' <span class="role">— ' + it.note + "</span>"; ul.appendChild(li); }); }
 function renderNotes(){ const box=document.getElementById("notes-list"); if(!box) return; box.innerHTML="";  NOTES.forEach(function(n,i){ const d=document.createElement("details"); d.className="note-item"; if(i===0) d.open=true;
     const s=document.createElement("summary");
     s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+n.title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
