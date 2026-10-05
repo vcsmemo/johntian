@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>John Tian</title>
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root { --bg:#0a0a0a; --ink:#f4f4f4; --mut:#8a8a8a; --acc:#ff4d2e; --line:#222; }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -12,8 +14,8 @@
     -webkit-font-smoothing:antialiased; }
   .wrap { max-width:900px; margin:0 auto; padding:0 28px; }
   .top { display:flex; justify-content:space-between; align-items:center; padding:26px 0; }
-  .top .mark { font-weight:800; letter-spacing:-0.02em; }
-  .top .mark em { font-style:normal; color:var(--acc); }
+  .top img.logo { width:40px; height:40px; border-radius:50%; object-fit:cover; display:block;
+    border:1px solid var(--line); }
   #lang-toggle { font:inherit; font-size:13px; background:none; border:1px solid var(--line);
     color:var(--mut); border-radius:999px; padding:6px 16px; cursor:pointer; }
   #lang-toggle:hover { color:var(--acc); border-color:var(--acc); }
@@ -37,6 +39,7 @@
   .photo img.avatar { width:104px; height:104px; border-radius:50%; display:block; object-fit:cover;
     border:2px solid var(--line); }
   .photo .note { color:var(--mut); font-size:16px; max-width:340px; }
+  .photo .cap { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--mut); margin-bottom:6px; }
   .notes { border-top:1px solid var(--line); padding:34px 0 6px; }
   .notes .n { font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--mut); display:block; margin-bottom:10px; }
   .notes h3 { font-size:20px; letter-spacing:-0.01em; margin-bottom:4px; }
@@ -59,7 +62,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><span class="mark">JT<em>.</em></span><button id="lang-toggle">中文</button></div>
+  <div class="top"><img class="logo" src="avatar-cartoon.jpg" alt="John Tian"><button id="lang-toggle">中文</button></div>
   <div class="hero">
     <div class="k" data-i18n="k">Investor · Writer · Builder</div>
     <h1><span data-i18n="h1a">Investing and</span><br><span class="dim" data-i18n="h1b">building globally.</span></h1>
@@ -77,8 +80,11 @@
     <div id="notes-list"></div>
   </section>
   <div class="photo">
-    <img class="avatar" src="avatar-cartoon.jpg" alt="John Tian">
-    <p class="note" data-i18n="personal"></p>
+    <img class="avatar" src="duo-cartoon.jpg" alt="John Tian with Garry Tan">
+    <div>
+      <p class="cap" data-i18n="photo_cap"></p>
+      <p class="note" data-i18n="personal"></p>
+    </div>
   </div>
   <footer><span><a href="#" id="email-link">Email</a> · <a href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">LinkedIn</a></span><span>© 2026 John Tian</span></footer>
 </div>
@@ -92,6 +98,7 @@ const I18N = {
     t4:"Reading",
     reading:['<em>The Power Law</em> [sample]','<em>Chip War</em> [sample]','Stratechery [sample]'],
     t5:"Notes", notes_hint:"Short essays, in Chinese or English. Newest first.",
+    photo_cap:"With Garry Tan at YC's HQ, 2015.",
     personal:"Previously: 36Kr (IPO), Kr Space, UpHonest, InCapital. Father of one, owned by two Maltese dogs."
   },
   zh: {
@@ -102,6 +109,7 @@ const I18N = {
     t4:"阅读",
     reading:['《The Power Law》[示例]','《Chip War》[示例]','Stratechery [示例]'],
     t5:"随笔", notes_hint:"短文随笔，中文英文都可以。新的在上面。",
+    photo_cap:"2015 年，在 YC 美国总部和 Garry Tan。",
     personal:"此前：36Kr（上市）、氪空间、UpHonest、盈动资本。一个孩子的父亲，被两只马尔济斯犬拥有。"
   }
 };
