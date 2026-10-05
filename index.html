@@ -131,7 +131,7 @@ const toggle = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("jt-lang") || "en";
 function renderReading(){ const ul=document.getElementById("reading-list"); if(!ul) return; ul.innerHTML="";
   (I18N[lang].reading||[]).forEach(t=>{ const li=document.createElement("li"); li.innerHTML=t; ul.appendChild(li); }); }
-function renderEmail(){ var u="johntian2015", d="gmail.com"; var a=document.getElementById("email-link");
+function renderEmail(){ var u="hi", d="johntian.me"; var a=document.getElementById("email-link");
   if(a){ a.href="mailto:"+u+"@"+d; a.textContent=u+"@"+d; } }
 function applyLang(l){ lang=l; document.documentElement.lang=l==="zh"?"zh-CN":"en";
   document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n");
