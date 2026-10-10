@@ -243,10 +243,31 @@ const I18N = {
   }
 };
 const NOTES = [
-  { date:"2026-10-05", sample:true,
-    title:"第一条笔记（示例）",
-    body:["这是一条示例笔记，用来展示随笔区的样子。以后你写的东西都会以同样的格式出现在这里，新的排在上面。",
-          "想加笔记时直接发消息给我就行——标题加正文，我来排版上线。"] }
+  { date:"2026-10-10",
+    title:"个人 Agent 的机会在哪",
+    title_en:"Where the Opportunities Are in Personal Agents",
+    body:[
+      "先说我的判断：个人 Agent 现在还没有定型，真正的空间在产品本身，而不在周边。我看到六个方向。",
+      "1. 入口还没定。Muse 是 App 加 WhatsApp，Instinct 是发短信和打电话，两种形态都有人买账。这说明“Agent 应该住在哪里”根本没有答案。聊天软件、语音、眼镜、手表、车机，甚至邮箱本身，都可能是更自然的入口。谁找到某类人最顺手的那个入口，谁就占了位置。",
+      "2. 记忆和个性化才是真正的护城河。模型会越来越像，能力差距会被抹平，但一个 Agent 懂你多少是没法迁移的。Instinct 的思路是让 Agent 从自己写下的反馈里学习，越用越懂你。谁能把“记住并正确使用用户偏好”做好，用户换产品的成本就会越来越高。这里的难点很多：记什么、忘什么、什么时候该问、什么时候该直接办，目前没有人做到令人满意。",
+      "3. 信任本身就是产品。这不是一个附属功能，而是用户愿不愿意把钱和账号交出来的前提。Muse 给每个用户一台隔离的虚拟机，Instinct 用了隔离沙盒、短期凭证，还有行动前的幻觉检查。但这些主要是工程层面的做法，真正的产品问题是：用户怎么知道它做了什么？哪些事必须先问我？出错了怎么撤回、谁来赔？谁能把这套体验做得让普通人放心，谁就更容易拿到更高权限，也就能做更多事。",
+      "4. 从“帮你做事”走到“替你成交”，商业模式还没有定论。Instinct 的创始人说，平台每年的交易额接近 10 亿美元，其中一半来自旅行，这很像是在走“按成交抽佣”的路。Muse 走的则是订阅，按用量分档。两条路差别很大：订阅卖的是工具，抽佣卖的是结果，后者的天花板更高，但也会引出“Agent 到底在帮我还是在帮商家”的利益冲突。Instinct 目前没有公开收入，所以哪种模式能跑通，现在没人有答案。",
+      "5. 从个人到人与人之间。Instinct 刚让 Agent 进群聊，每个人的 Agent 要先征得许可才能和群 Agent 连接，它还有一个“信任的人”网络，让 Agent 之间协调任务、安全地共享文件。想一想订餐、凑局、搬家、家庭日程，这些事本来就需要多个人协调。一个 Agent 帮你办事只是第一步，Agent 和 Agent 之间怎么谈、怎么对账，才是更大的想象空间。",
+      "6. 没被覆盖的人群和市场。Muse 上线时只有美国，Instinct 还是邀请制，这意味着绝大多数人还没真正用上。不同语言、不同支付方式、不同生活习惯，通用产品很难一次覆盖。针对某一类人（比如带娃的父母、自由职业者、小店老板、老年人）或某一个地区做的个人 Agent，不需要和大厂拼通用能力，只需要比它们更懂这群人。",
+      "最后一个提醒：大厂在分发和账号上有天然优势，Muse 背靠的是 Meta 的全部体量。创业公司能赢的地方，大概率是速度、信任和某个人群上的深度，而不是通用能力。Instinct 这个月估值翻了四倍，说明资本相信这条路走得通，但同时也说明预期已经被推得很高。这个品类才几周大，别太当真任何一个现在的结论，包括我这些。",
+      "参考来源：TechCrunch《Meta debuts its Muse AI agent》(2026-09-08)；CNBC《Meta pushes into personal AI agents》(2026-09-08)；The Next Web《Meta launches Muse》；Fortune《Meet Noah Shinn》(2026-09-30)；Business Insider《Instinct joined the chat》(2026-10-06)；AI Weekly《Instinct opens its AI agent to group chats》(2026-10-06)；Ventureburn《Instinct raises $1 billion》；Vandata《Instinct AI, what a $10B personal agent teaches builders》。"
+    ],
+    body_en:[
+      "My view is that personal agents haven't settled into a final shape yet, so the real room is in the product itself rather than in side businesses around it. I see six areas.",
+      "1. The entry point is still open. Muse is an app plus WhatsApp. Instinct is text messages and phone calls. Both are finding buyers, which tells me nobody knows where an agent should live. Messaging apps, voice, glasses, watches, cars, even the inbox could each be the more natural front door for some group of people. Whoever finds the easiest door for a specific kind of person takes the position.",
+      "2. Memory and personalization are the real moat. Models will converge and capability gaps will shrink, but how well an agent knows you doesn't transfer. Instinct's approach is to let the agent learn from its own written feedback, so it gets better with use. The team that gets \u201cremember the right things and use them correctly\u201d right will make switching painful for users. The hard parts are what to remember, what to forget, when to ask and when to just act, and nobody has nailed any of those yet.",
+      "3. Trust is the product, not a feature. It decides whether people hand over their money and accounts at all. Muse gives each user an isolated virtual machine, and Instinct uses isolated sandboxes, short-lived credentials and a hallucination check before acting. But those are mostly engineering measures. The product questions are: how does a user know what the agent did, which actions must ask me first, and how do I undo a mistake or get compensated for one? Whoever makes this feel safe to ordinary people earns higher permissions, and higher permissions mean the agent can do more.",
+      "4. From \u201cdoing things for you\u201d to \u201cclosing deals for you,\u201d and the business model is unsettled. Instinct's founder says the platform handles close to $1 billion a year in transactions, half of it travel. That looks like a take-rate model. Muse sells subscriptions tiered by usage. The two are very different: a subscription sells a tool, a commission sells outcomes. The latter has a higher ceiling but raises an awkward conflict: is the agent working for me or for the merchant? Instinct hasn't disclosed revenue, so no one can say yet which model works.",
+      "5. From one person to people with each other. Instinct just put its agent into group chats, and each person's agent must grant permission before linking to the group's agent. It also has a trusted-person network where agents coordinate tasks and share files securely. Think of dinner plans, trips, moves, family schedules. These already require coordinating several people. One agent doing errands for you is step one. How agents negotiate and settle up with each other is the bigger canvas.",
+      "6. People and markets nobody serves yet. Muse launched US-only and Instinct is invite-only, so most people haven't really used either. Different languages, payment systems and daily habits are hard for a general product to cover at once. A personal agent built for one kind of person (parents with young kids, freelancers, small shop owners, older adults) or one region doesn't need to beat the giants on general capability. It only needs to understand that group better than they do.",
+      "One last caution: the big platforms have a natural edge in distribution and accounts, and Muse sits on Meta's full weight. Where a startup can win is probably speed, trust and depth with a specific group, not general capability. Instinct's valuation jumping fourfold in a month shows investors believe this path works, and also that expectations are already very high. The category is only weeks old, so don't take any conclusion too seriously, including mine.",
+      "Sources: TechCrunch \u201cMeta debuts its Muse AI agent\u201d (2026-09-08); CNBC \u201cMeta pushes into personal AI agents\u201d (2026-09-08); The Next Web \u201cMeta launches Muse\u201d; Fortune \u201cMeet Noah Shinn\u201d (2026-09-30); Business Insider \u201cInstinct joined the chat\u201d (2026-10-06); AI Weekly \u201cInstinct opens its AI agent to group chats\u201d (2026-10-06); Ventureburn \u201cInstinct raises $1 billion\u201d; Vandata \u201cInstinct AI, what a $10B personal agent teaches builders\u201d."
+    ] }
 ];
 function renderWatch(){ const box=document.getElementById("watch-groups"); if(!box) return; box.innerHTML="";
   (I18N[lang].watch||[]).forEach(function(g){ const gd=document.createElement("div"); gd.className="watch-group";
@@ -260,11 +281,13 @@ function renderPrev(){ const ul=document.getElementById("prev-list"); if(!ul) re
   (I18N[lang].prev||[]).forEach(function(it){ const li=document.createElement("li");
     li.innerHTML = (it.logo ? '<img class="co-logo" src="'+it.logo+'" alt="">' : "") + it.name + ' <span class="role">— ' + it.note + "</span>"; ul.appendChild(li); }); }
 function renderNotes(){ const box=document.getElementById("notes-list"); if(!box) return; box.innerHTML="";  NOTES.forEach(function(n,i){ const d=document.createElement("details"); d.className="note-item"; if(i===0) d.open=true;
+    const title=(lang==="en"&&n.title_en)?n.title_en:n.title;
+    const body=(lang==="en"&&n.body_en)?n.body_en:n.body;
     const s=document.createElement("summary");
-    s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+n.title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
+    s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
     d.appendChild(s);
     const b=document.createElement("div"); b.className="body";
-    n.body.forEach(function(p){ const pe=document.createElement("p"); pe.textContent=p; b.appendChild(pe); });
+    body.forEach(function(p){ const pe=document.createElement("p"); pe.textContent=p; b.appendChild(pe); });
     d.appendChild(b); box.appendChild(d); }); }
 const toggle = document.getElementById("lang-toggle");
 let lang = localStorage.getItem("jt-lang") || "en";
