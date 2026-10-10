@@ -172,7 +172,7 @@ const I18N = {
     personal:"Father of one, owned by two Maltese dogs.",
     contact:"Contact:", copied:"Copied!", copy_title:"Click to copy email",
     t7:"Watching",
-    watch_intro:'Companies I am tracking closely — click through for live data on <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a>.',
+    watch_intro:'Live lists from <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a> — synced daily. Click a list to expand.',
     },
   zh: {
     k:"投资人 · 写作者 · 创造者", h1a:"在全球投资，", h1b:"在全球创造。",
@@ -205,7 +205,7 @@ const I18N = {
     personal:"一个孩子的父亲，被两只马尔济斯犬拥有。",
     contact:"联系：", copied:"已复制！", copy_title:"点击复制邮箱",
     t7:"观察",
-    watch_intro:'正在密切跟踪的公司 —— 点击查看 <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a> 上的实时数据。',
+    watch_intro:'来自 <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a> 的实时榜单 — 每天同步。点击展开。',
     }
 };
 const NOTES = [
@@ -266,7 +266,7 @@ const NOTES = [
     ] }
 ];
 function renderWatch(){ const box=document.getElementById("watch-groups"); if(!box) return; box.innerHTML="";
-  (window.WATCH_DATA||[]).forEach(function(g){ const d=document.createElement("details"); d.className="watch-details";
+  (typeof WATCH_DATA!=="undefined"?WATCH_DATA:[]).forEach(function(g){ const d=document.createElement("details"); d.className="watch-details";
     const s=document.createElement("summary");
     s.innerHTML='<h4>'+g.name+'</h4><span class="count">'+(lang==="zh"?"· "+g.total+" 家":"· "+g.total+" companies")+'</span>';
     d.appendChild(s);
