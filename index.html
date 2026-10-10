@@ -53,8 +53,16 @@
   .prev-grid li .role { color:var(--mut); }
   .prev-grid li .co-logo { height:22px; width:auto; vertical-align:-5px; margin-right:10px; border-radius:4px; }
   .watch-intro { color:var(--mut); font-size:15px; margin:8px 0 2px; }
-  .watch-group { margin:24px 0 6px; }
-  .watch-group h4 { font-size:13px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mut); font-weight:600; margin-bottom:2px; }
+  .watch-details { border-bottom:1px solid var(--line); }
+  .watch-details summary { cursor:pointer; list-style:none; padding:14px 0; }
+  .watch-details summary::-webkit-details-marker { display:none; }
+  .watch-details summary h4 { display:inline; font-size:16.5px; font-weight:600; }
+  .watch-details summary:hover h4 { color:var(--acc); }
+  .watch-details .count { color:var(--mut); font-size:13px; margin-left:10px; }
+  .watch-thesis { color:var(--mut); font-size:14px; margin:4px 0 6px; max-width:44em; }
+  .watch-more { margin:10px 0 18px; font-size:14px; }
+  .watch-more a { color:var(--mut); }
+  .watch-more a:hover { color:var(--acc); }
   .watch-list { list-style:none; }
   .watch-list li { padding:12px 0; border-bottom:1px solid var(--line); font-size:16.5px; }
   .watch-list li:last-child { border-bottom:none; }
@@ -130,6 +138,7 @@
   </section>
   <footer><span><span class="contact-label" data-i18n="contact">Contact:</span><a href="#" id="email-link">Email</a> · <a href="https://www.linkedin.com/in/johntian" target="_blank" rel="noopener">LinkedIn</a></span><span>© 2026 John Tian</span></footer>
 </div>
+<script src="watch-data.js"></script>
 <script>
 const I18N = {
   en: {
@@ -164,30 +173,7 @@ const I18N = {
     contact:"Contact:", copied:"Copied!", copy_title:"Click to copy email",
     t7:"Watching",
     watch_intro:'Companies I am tracking closely — click through for live data on <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a>.',
-    watch:[
-      { g:"Frontier Models", items:[
-        { logo:"watch/anthropic.png", slug:"anthropic", name:"Anthropic", note:"The lab every frontier model is measured against." },
-        { logo:"watch/openai.png", slug:"openai", name:"OpenAI", note:"Still defining the category." },
-        { logo:"watch/xai.png", slug:"xai", name:"xAI", note:"Musk's velocity play in foundation models." },
-        { logo:"watch/deepseek.png", slug:"deepseek", name:"DeepSeek", note:"China's open-weights shock to the system." },
-        { logo:"watch/moonshot.png", slug:"moonshot", name:"Moonshot", note:"Kimi's maker, chasing the frontier." }
-      ]},
-      { g:"Physical AI", items:[
-        { logo:"watch/physical-intelligence.png", slug:"physical-intelligence", name:"Physical Intelligence", note:"The π team building robot foundation models." },
-        { logo:"watch/skild-ai.png", slug:"skild-ai", name:"Skild AI", note:"One general brain for every robot." },
-        { logo:"watch/unitree.png", slug:"unitree", name:"Unitree", note:"Humanoids at consumer-electronics prices." },
-        { logo:"watch/generalist.png", slug:"generalist", name:"Generalist", note:"A $3B bet on embodied foundation models." },
-        { logo:"watch/sunday.png", slug:"sunday", name:"Sunday", note:"Home robots that learn household chores." }
-      ]},
-      { g:"AI Infra", items:[
-        { logo:"watch/fireworks.png", slug:"fireworks", name:"Fireworks", note:"Inference speed as a competitive moat." },
-        { logo:"watch/baseten.png", slug:"baseten", name:"Baseten", note:"Model deployment without the ops burden." },
-        { logo:"watch/together-ai.png", slug:"together-ai", name:"Together AI", note:"The open-source AI cloud." },
-        { logo:"watch/modal.png", slug:"modal", name:"Modal", note:"Serverless compute for AI workloads." },
-        { logo:"watch/lambda.png", slug:"lambda", name:"Lambda", note:"GPU cloud since before it was cool." }
-      ]}
-    ]
-  },
+    },
   zh: {
     k:"投资人 · 写作者 · 创造者", h1a:"在全球投资，", h1b:"在全球创造。",
     t1:"投资", p1:'<a href="https://www.soclepartners.com" target="_blank" rel="noopener">Socle Partners</a>（FunPlus 旗下）合伙人。在最早期的阶段支持技术创始人 —— AI 基础设施、基础模型、Physical AI。',
@@ -220,30 +206,7 @@ const I18N = {
     contact:"联系：", copied:"已复制！", copy_title:"点击复制邮箱",
     t7:"观察",
     watch_intro:'正在密切跟踪的公司 —— 点击查看 <a href="https://arr.club" target="_blank" rel="noopener">ARR.Club</a> 上的实时数据。',
-    watch:[
-      { g:"前沿模型", items:[
-        { logo:"watch/anthropic.png", slug:"anthropic", name:"Anthropic", note:"所有前沿模型对标的对象。" },
-        { logo:"watch/openai.png", slug:"openai", name:"OpenAI", note:"依然在定义这个赛道。" },
-        { logo:"watch/xai.png", slug:"xai", name:"xAI", note:"Musk 在基础模型上的速度实验。" },
-        { logo:"watch/deepseek.png", slug:"deepseek", name:"DeepSeek", note:"来自中国的开源震撼。" },
-        { logo:"watch/moonshot.png", slug:"moonshot", name:"Moonshot", note:"Kimi 背后的团队，追赶前沿。" }
-      ]},
-      { g:"Physical AI", items:[
-        { logo:"watch/physical-intelligence.png", slug:"physical-intelligence", name:"Physical Intelligence", note:"π 团队在做机器人基础模型。" },
-        { logo:"watch/skild-ai.png", slug:"skild-ai", name:"Skild AI", note:"一个通用大脑，驱动所有机器人。" },
-        { logo:"watch/unitree.png", slug:"unitree", name:"Unitree", note:"消费电子价格的人形机器人。" },
-        { logo:"watch/generalist.png", slug:"generalist", name:"Generalist", note:"30 亿美元押注具身基础模型。" },
-        { logo:"watch/sunday.png", slug:"sunday", name:"Sunday", note:"学会做家务的家庭机器人。" }
-      ]},
-      { g:"AI 基础设施", items:[
-        { logo:"watch/fireworks.png", slug:"fireworks", name:"Fireworks", note:"把推理速度做成护城河。" },
-        { logo:"watch/baseten.png", slug:"baseten", name:"Baseten", note:"模型部署，零运维负担。" },
-        { logo:"watch/together-ai.png", slug:"together-ai", name:"Together AI", note:"开源 AI 云。" },
-        { logo:"watch/modal.png", slug:"modal", name:"Modal", note:"为 AI 负载打造的 serverless 算力。" },
-        { logo:"watch/lambda.png", slug:"lambda", name:"Lambda", note:"最早的 GPU 云之一。" }
-      ]}
-    ]
-  }
+    }
 };
 const NOTES = [
   { date:"2026-10-10",
@@ -303,46 +266,22 @@ const NOTES = [
     ] }
 ];
 function renderWatch(){ const box=document.getElementById("watch-groups"); if(!box) return; box.innerHTML="";
-  (I18N[lang].watch||[]).forEach(function(g){ const gd=document.createElement("div"); gd.className="watch-group";
-    const h=document.createElement("h4"); h.textContent=g.g; gd.appendChild(h);
-    const ul=document.createElement("ul"); ul.className="watch-list";
-    g.items.forEach(function(it){ const li=document.createElement("li");
-      li.innerHTML='<img class="co-logo" src="'+it.logo+'" alt=""> <a href="https://www.arr.club/'+it.slug+'" target="_blank" rel="noopener">'+it.name+'</a> <span class="role">— '+it.note+"</span>";
-      ul.appendChild(li); });
-    gd.appendChild(ul); box.appendChild(gd); }); }
-function renderPrev(){ const ul=document.getElementById("prev-list"); if(!ul) return; ul.innerHTML="";
-  (I18N[lang].prev||[]).forEach(function(it){ const li=document.createElement("li");
-    li.innerHTML = (it.logo ? '<img class="co-logo" src="'+it.logo+'" alt="">' : "") + it.name + ' <span class="role">— ' + it.note + "</span>"; ul.appendChild(li); }); }
-function renderNotes(){ const box=document.getElementById("notes-list"); if(!box) return; box.innerHTML="";  NOTES.forEach(function(n,i){ const d=document.createElement("details"); d.className="note-item";
-    const title=(lang==="en"&&n.title_en)?n.title_en:n.title;
-    const body=(lang==="en"&&n.body_en)?n.body_en:n.body;
+  (window.WATCH_DATA||[]).forEach(function(g){ const d=document.createElement("details"); d.className="watch-details";
     const s=document.createElement("summary");
-    s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
+    s.innerHTML='<h4>'+g.name+'</h4><span class="count">'+(lang==="zh"?"· "+g.total+" 家":"· "+g.total+" companies")+'</span>';
     d.appendChild(s);
-    const b=document.createElement("div"); b.className="body";
-    body.forEach(function(p){ const pe=document.createElement("p"); pe.innerHTML=p; b.appendChild(pe); });
-    d.appendChild(b); box.appendChild(d); }); }
-const toggle = document.getElementById("lang-toggle");
-let lang = localStorage.getItem("jt-lang") || "en";
-function renderBuilding(){ const ul=document.getElementById("building-list"); if(!ul) return; ul.innerHTML="";
-  (I18N[lang].building||[]).forEach(t=>{ const li=document.createElement("li"); li.innerHTML=t; ul.appendChild(li); }); }
-function renderReading(){ const ul=document.getElementById("reading-list"); if(!ul) return; ul.innerHTML="";
-  (I18N[lang].reading||[]).forEach(t=>{ const li=document.createElement("li"); li.innerHTML=t; ul.appendChild(li); }); }
-function renderEmail(){ var u="hi", d="johntian.me"; var a=document.getElementById("email-link");
-  if(!a) return;
-  var shown = u + " [at] " + d.replace(".", " [dot] ");
-  var real = u + "@" + d;
-  a.textContent = shown;
-  a.href = "mailto:" + real;
-  a.title = I18N[lang].copy_title;
-  a.onclick = function(e){ e.preventDefault();
-    var done = function(){ a.textContent = I18N[lang].copied;
-      setTimeout(function(){ a.textContent = shown; }, 1600); };
-    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(real).then(done, done); }
-    else { done(); }
-    setTimeout(function(){ window.location.href = "mailto:" + real; }, 400);
-  };
-}
+    const body=document.createElement("div"); body.className="watch-body";
+    if(g.thesis){ const t=document.createElement("p"); t.className="watch-thesis"; t.textContent=g.thesis; body.appendChild(t); }
+    const ul=document.createElement("ul"); ul.className="watch-list";
+    g.companies.forEach(function(c){ const li=document.createElement("li");
+      const img=c.logo?'<img class="co-logo" src="'+c.logo+'" alt=""> ':'';
+      const arr=c.arr?' <span class="role">— '+c.arr+'</span>':'';
+      li.innerHTML=img+'<a href="https://www.arr.club/'+c.slug+'" target="_blank" rel="noopener">'+c.name+'</a>'+arr;
+      ul.appendChild(li); });
+    body.appendChild(ul);
+    const more=document.createElement("p"); more.className="watch-more";
+    more.innerHTML='<a href="https://www.arr.club/lists/'+g.slug+'" target="_blank" rel="noopener">'+(lang==="zh"?"在 ARR.Club 看完整榜单 →":"View full list on ARR.Club →")+'</a>';
+    body.appendChild(more); d.appendChild(body); box.appendChild(d); }); }
 function applyLang(l){ lang=l; document.documentElement.lang=l==="zh"?"zh-CN":"en";
   document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n");
     if(I18N[l][k]!==undefined) el.innerHTML=I18N[l][k]; });
