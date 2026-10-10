@@ -5,11 +5,17 @@ Pulls 4 lists from Supabase (tags + company_tags + companies),
 downloads logos, and writes watch-data.js consumed by index.html.
 Run daily via cron; safe to re-run (only new logos are downloaded).
 """
-import json, os, re, urllib.request
+import json, os, re, urllib.request, hashlib
 
 SITE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOGO_DIR = os.path.join(SITE_DIR, "watch", "list")
 os.makedirs(LOGO_DIR, exist_ok=True)
+
+def logo_path(slug, ext):
+    """Content-hashed logo URL: changes only when the file changes (cache-safe)."""
+    p = os.path.join(LOGO_DIR, slug + ext)
+    h = hashlib.md5(open(p, "rb").read()).hexdigest()[:8]
+    return "watch/list/%s%s?v=%s" % (slug, ext, h)
 
 # tag slug -> (max companies shown, 0 = all)
 LISTS = [
@@ -40,7 +46,7 @@ def download_logo(logo_url, slug):
     for e in (".png", ".svg", ".jpg", ".jpeg", ".webp"):
         p = os.path.join(LOGO_DIR, slug + e)
         if os.path.exists(p) and os.path.getsize(p) > 0:
-            return "watch/list/%s%s" % (slug, e)
+            return logo_path(slug, e)
     if not logo_url:
         return ""
     if logo_url.startswith("/"):
@@ -62,7 +68,7 @@ def download_logo(logo_url, slug):
         elif clean.endswith(".webp"): ext = ".webp"
         dest = os.path.join(LOGO_DIR, slug + ext)
         open(dest, "wb").write(data)
-        return "watch/list/%s%s" % (slug, ext)
+        return logo_path(slug, ext)
     except Exception as e:
         print("  logo failed for %s: %s" % (slug, e))
         return ""
