@@ -35,27 +35,33 @@ def parse_arr(s):
     return float(m.group(1)) * {"K": 1e3, "M": 1e6, "B": 1e9}.get(m.group(2) or "M", 1)
 
 def download_logo(logo_url, slug):
-    """Download company logo to watch/list/{slug}.png; return local path or ''."""
+    """Download company logo to watch/list/{slug}.*; return local path or ''."""
+    # reuse an already-downloaded file (any extension), e.g. manually placed
+    for e in (".png", ".svg", ".jpg", ".jpeg", ".webp"):
+        p = os.path.join(LOGO_DIR, slug + e)
+        if os.path.exists(p) and os.path.getsize(p) > 0:
+            return "watch/list/%s%s" % (slug, e)
     if not logo_url:
         return ""
     if logo_url.startswith("/"):
         logo_url = "https://www.arr.club" + logo_url
-    dest = os.path.join(LOGO_DIR, slug + ".png")
-    if os.path.exists(dest) and os.path.getsize(dest) > 0:
-        return "watch/list/%s.png" % slug
     try:
         req = urllib.request.Request(logo_url, headers={"User-Agent": "Mozilla/5.0"})
         data = urllib.request.urlopen(req, timeout=20).read()
-        if len(data) < 200:
+        # sanity: content must look like an image (magic bytes or <svg)
+        head = data[:64].lstrip()
+        is_img = (head.startswith(b"<svg") or head.startswith(b"\x89PNG")
+                  or head.startswith(b"\xff\xd8\xff") or head.startswith(b"RIFF"))
+        if not is_img or len(data) < 100:
             return ""
-        # keep original extension when not png
+        # strip query string before sniffing extension
+        clean = logo_url.lower().split("?")[0]
         ext = ".png"
-        if logo_url.lower().endswith(".svg"): ext = ".svg"
-        elif logo_url.lower().endswith((".jpg", ".jpeg")): ext = ".jpg"
-        elif logo_url.lower().endswith(".webp"): ext = ".webp"
+        if clean.endswith(".svg"): ext = ".svg"
+        elif clean.endswith((".jpg", ".jpeg")): ext = ".jpg"
+        elif clean.endswith(".webp"): ext = ".webp"
         dest = os.path.join(LOGO_DIR, slug + ext)
-        if not os.path.exists(dest):
-            open(dest, "wb").write(data)
+        open(dest, "wb").write(data)
         return "watch/list/%s%s" % (slug, ext)
     except Exception as e:
         print("  logo failed for %s: %s" % (slug, e))
