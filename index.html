@@ -282,6 +282,39 @@ function renderWatch(){ const box=document.getElementById("watch-groups"); if(!b
     const more=document.createElement("p"); more.className="watch-more";
     more.innerHTML='<a href="https://www.arr.club/lists/'+g.slug+'" target="_blank" rel="noopener">'+(lang==="zh"?"在 ARR.Club 看完整榜单 →":"View full list on ARR.Club →")+'</a>';
     body.appendChild(more); d.appendChild(body); box.appendChild(d); }); }
+function renderPrev(){ const ul=document.getElementById("prev-list"); if(!ul) return; ul.innerHTML="";
+  (I18N[lang].prev||[]).forEach(function(it){ const li=document.createElement("li");
+    li.innerHTML = (it.logo ? '<img class="co-logo" src="'+it.logo+'" alt="">' : "") + it.name + ' <span class="role">— ' + it.note + "</span>"; ul.appendChild(li); }); }
+function renderNotes(){ const box=document.getElementById("notes-list"); if(!box) return; box.innerHTML="";  NOTES.forEach(function(n,i){ const d=document.createElement("details"); d.className="note-item";
+    const title=(lang==="en"&&n.title_en)?n.title_en:n.title;
+    const body=(lang==="en"&&n.body_en)?n.body_en:n.body;
+    const s=document.createElement("summary");
+    s.innerHTML='<span class="date">'+n.date+'</span><br><h4>'+title+(n.sample?'<span class="sample-tag">'+(lang==="zh"?"示例":"sample")+'</span>':"")+'</h4>';
+    d.appendChild(s);
+    const b=document.createElement("div"); b.className="body";
+    body.forEach(function(p){ const pe=document.createElement("p"); pe.innerHTML=p; b.appendChild(pe); });
+    d.appendChild(b); box.appendChild(d); }); }
+const toggle = document.getElementById("lang-toggle");
+let lang = localStorage.getItem("jt-lang") || "en";
+function renderBuilding(){ const ul=document.getElementById("building-list"); if(!ul) return; ul.innerHTML="";
+  (I18N[lang].building||[]).forEach(t=>{ const li=document.createElement("li"); li.innerHTML=t; ul.appendChild(li); }); }
+function renderReading(){ const ul=document.getElementById("reading-list"); if(!ul) return; ul.innerHTML="";
+  (I18N[lang].reading||[]).forEach(t=>{ const li=document.createElement("li"); li.innerHTML=t; ul.appendChild(li); }); }
+function renderEmail(){ var u="hi", d="johntian.me"; var a=document.getElementById("email-link");
+  if(!a) return;
+  var shown = u + " [at] " + d.replace(".", " [dot] ");
+  var real = u + "@" + d;
+  a.textContent = shown;
+  a.href = "mailto:" + real;
+  a.title = I18N[lang].copy_title;
+  a.onclick = function(e){ e.preventDefault();
+    var done = function(){ a.textContent = I18N[lang].copied;
+      setTimeout(function(){ a.textContent = shown; }, 1600); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(real).then(done, done); }
+    else { done(); }
+    setTimeout(function(){ window.location.href = "mailto:" + real; }, 400);
+  };
+}
 function applyLang(l){ lang=l; document.documentElement.lang=l==="zh"?"zh-CN":"en";
   document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n");
     if(I18N[l][k]!==undefined) el.innerHTML=I18N[l][k]; });
